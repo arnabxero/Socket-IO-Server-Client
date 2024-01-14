@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
         origin: function (origin, callback) {
-            const allowedOrigins = ["https://xero-force.vercel.app/", "http://localhost:3000"];
+            const allowedOrigins = ["https://xero-force.vercel.app", "http://localhost:3000"]; // A '/' in the end can cause mismatched origins.
             if (!origin || allowedOrigins.indexOf(origin) !== -1) {
                 callback(null, true);
             } else {
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
 
 // Use CORS middleware for Express
 app.use(cors({
-    origin: ["https://xero-force.vercel.app/", "http://localhost:3000"],
+    origin: ["https://xero-force.vercel.app", "http://localhost:3000"], // A '/' in the end can cause mismatched origins.
 }));
 
 
